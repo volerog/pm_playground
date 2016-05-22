@@ -105,17 +105,16 @@ behs = {
 }
 
 var user_classes = {
-1: {name: 'Ходор', predictor: 'detect0.5', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    7: {name: 'Джоффри', predictor: 'detect0.5', behaviours:['greed', 'bet'], riskable: 0.3, rich_gredd: 0.7, rich_place: 2},
-    9: {name: 'Теон', predictor: 'detect0.5', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20.},
-    6: {name: 'Джон Сноу', predictor: 'detect0.6', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    8: {name: 'Джон Сноу 2', predictor: 'detect0.6', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20.},
-    10: {name: 'Джон Сноу 3', predictor: 'expectation', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20.},
-    11: {name: 'Джон Сноу 4', predictor: 'choice_yes', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20},
-    5: {name: 'Арья', predictor: 'detect0.7', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    4: {name: 'Нед', predictor: 'detect0.8', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    3: {name: 'Роб', predictor: 'detect0.9', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    2: {name: 'Бран', predictor: 'detect1', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7}
+1: {name: 'Hodor', predictor: 'detect0.5', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
+    7: {name: 'Joffrey', predictor: 'detect0.5', behaviours:['greed', 'bet'], riskable: 0.3, rich_gredd: 0.7, rich_place: 2},
+    9: {name: 'Theon', predictor: 'detect0.5', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20.},
+    6: {name: 'Jon Snow', predictor: 'detect0.6', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
+    8: {name: 'Jon Snow', predictor: 'detect0.6', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20.},
+    10: {name: 'Jon Snow', predictor: 'expectation', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20.},
+    5: {name: 'Arya', predictor: 'detect0.7', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
+    4: {name: 'Ned', predictor: 'detect0.8', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
+    3: {name: 'Robb', predictor: 'detect0.9', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
+    2: {name: 'Bran', predictor: 'detect1', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7}
 }
 
 // Engine code

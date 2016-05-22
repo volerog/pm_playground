@@ -38,3 +38,22 @@ height: 176px;
 .demo-card-wide > .mdl-card__menu {
 color: #868;
 }
+
+.hero{
+    background: #eee;
+    padding: 3px;
+    margin: 3px; 
+    border: 3px solid #eee
+    border-radius: 5px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -webkit-box-shadow: 0 2px 2px 0 #C2C2C2;
+    box-shadow: 0 2px 2px 0 #C2C2C2;
+}
+
+.mdl-button {
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    margin: 3px;
+}
