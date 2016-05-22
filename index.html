@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta property="og:description" content="Tinker with a Prediction Market right here in your browser.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500|Material+Icons" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="material.min.css">
+    <link rel="stylesheet" href="nv.d3.css">
+    <link rel="stylesheet" href="lib.css">
+    <script defer src="material.min.js"></script>
+    <script src="jquery.min.js"></script>
+    <script defer src="lib.js"></script>
+    <script src="d3.min.js" charset="utf-8"></script>
+    <script src="nv.d3.js"></script>
+    <title>Prediction Market Playground</title>
+</head>
+<body>
+    <header class="mdl-layout__header mdl-color--grey-100 mdl-color-text--grey-600">
+        <h3 class="l--page">Tinker With a <b>Prediction Market</b> 
+        <span class="optional">Right Here </span>in Your Browser.</h3>
+    </header>
+    <!-- Accent-colored raised button with ripple -->
+<div id="container l--page">
+    <div class="timeline-controls" id="botlist">
+        <button class="mdl-button mdl-js-button mdl-button--icon ui-resetButton mdl-button--raised mdl-js-ripple-effect" id="reset-button" title="Reset market">
+            <i class="material-icons">replay</i>
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--icon ui-playButton mdl-button--raised mdl-js-ripple-effect" id="play-pause-button" title="Run/Pause">
+            <i class="material-icons">play_arrow</i>
+        </button>
+        <button class="mdl-button mdl-js-button mdl-button--icon ui-stepButton mdl-button--raised mdl-js-ripple-effect" id="next-step-button" title="Run 200 iterations">
+            <i class="material-icons">skip_next</i>
+        </button>
+        <button id="distribution" class="mdl-button mdl-js-button mdl-button--icon mdl-button--raised mdl-js-ripple-effect" title="Build distribution graph">
+            <i class="material-icons">motorcycle</i>
+        </button>
+        <button id="remove-bots" class="mdl-button mdl-js-button mdl-button--icon mdl-button--raised mdl-js-ripple-effect" title="Remove last bot in the list">
+            <i class="material-icons">remove</i>
+        </button>
+   </div>
+        <div class="control">
+            <span class="label">Iterations</span>
+            <span class="value" id="iter-number"></span>
+            <span class="value" id="sum-capital"></span>
+        </div>
+
+</div>
+
+<div id="main-part" class="mdl-grid">
+    <div id="bots" class="mdl-cell bots"></div>
+    <div id="botproperties" class="mdl-cell botprops">
+        <div id="leaderboard2"><svg></svg></div>
+        <div id="bets"></div>
+    </div>
+    <div class="mdl-cell leaderboard">
+        <div id="leaderboard"><svg></svg></div>
+    </div>
+</div>
+
+</body>
+</html>

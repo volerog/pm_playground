@@ -1,0 +1,40 @@
+#main-part p,
+#main-part .column .label,
+#main-part .column label {
+    font-weight: 300;
+    line-height: 1.38em;
+    margin: 0;
+    color: #777;
+    font-size: 13px;
+}
+
+
+.bots {
+ width: 15%;
+}
+.botprops {
+ width: 20%;
+}
+.leaderboard {
+ width: 60%;
+}
+
+#leaderboard svg {
+    height: 400px;
+}
+
+#leaderboard2 svg {
+    height: 400px;
+}
+
+
+demo-card-wide.mdl-card {
+width: 512px;
+}
+.demo-card-wide > .mdl-card__title {
+color: #757;
+height: 176px;
+}
+.demo-card-wide > .mdl-card__menu {
+color: #868;
+}
