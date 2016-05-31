@@ -54,7 +54,7 @@ function create_auction() {
 
 // Bots behaviours
 
-var behaviour_depression = function(x, leaderboard, user) {
+var behaviour_depression = function(predictor_res, leaderboard, user) {
     if (user.capital < user.params.depression_limit) {
         user.color = "#00f";
         return {sum: 0, p: 0, ok: true};
@@ -62,7 +62,7 @@ var behaviour_depression = function(x, leaderboard, user) {
     return {sum: 0, p: 0, ok: false};
 };
 
-var behaviour_greed = function(x, leaderboard, user) {
+var behaviour_greed = function(predictor_res, leaderboard, user) {
     current_place = leaderboard.find_place(user.capital);
     if (current_place <= user.params.rich_place) {
         if ((user.prev_place > user.params.rich_place && user.safe_capital < user.capital * user.params.rich_greed) 
@@ -70,18 +70,18 @@ var behaviour_greed = function(x, leaderboard, user) {
             user.safe_capital = user.capital * user.params.rich_greed;
         }
         user.color = "#f00";
-        return {sum: user.riskable * (user.capital - user.safe_capital), p: user.predictor(x), ok: true};
+        return {sum: user.riskable * (user.capital - user.safe_capital), p: predictor_res, ok: true};
     }
     user.prev_place = current_place;
     return {sum: 0, p: 0, ok: false};
 };
 
-var behaviuor_random = function(x, leaderboard, user) {
+var behaviuor_random = function(predictor_res, leaderboard, user) {
     user.color = "#"+((1<<24)*Math.random()|0).toString(16);
     if (user.capital < user.safe_capital) {
         user.safe_capital = user.capital * user.params.rich_greed;
     }
-    return {sum: user.riskable * (user.capital - user.safe_capital), p: user.predictor(x), ok: true};
+    return {sum: user.riskable * (user.capital - user.safe_capital), p: predictor_res, ok: true};
 };
 
 // Bots configuration
@@ -105,16 +105,16 @@ behs = {
 }
 
 var user_classes = {
-1: {name: 'Hodor', predictor: 'detect0.5', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    7: {name: 'Joffrey', predictor: 'detect0.5', behaviours:['greed', 'bet'], riskable: 0.3, rich_gredd: 0.7, rich_place: 2},
-    9: {name: 'Theon', predictor: 'detect0.5', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20.},
-    6: {name: 'Jon Snow', predictor: 'detect0.6', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    8: {name: 'Jon Snow', predictor: 'detect0.6', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20.},
-    10: {name: 'Jon Snow', predictor: 'expectation', behaviours:['depression', 'bet'], riskable: 0.3, rich_gredd: 0.7, depression_limit: 20.},
-    5: {name: 'Arya', predictor: 'detect0.7', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    4: {name: 'Ned', predictor: 'detect0.8', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    3: {name: 'Robb', predictor: 'detect0.9', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7},
-    2: {name: 'Bran', predictor: 'detect1', behaviours:['bet'], riskable: 0.3, rich_gredd: 0.7}
+1: {name: 'Hodor', predictor: 'detect0.5', behaviours:['bet'], riskable: 0.3, rich_greed: 0.7},
+    7: {name: 'Joffrey', predictor: 'detect0.5', behaviours:['greed', 'bet'], riskable: 0.3, rich_greed: 0.7, rich_place: 2},
+    9: {name: 'Theon', predictor: 'detect0.5', behaviours:['depression', 'bet'], riskable: 0.3, rich_greed: 0.7, depression_limit: 20.},
+    6: {name: 'Jon Snow', predictor: 'detect0.6', behaviours:['bet'], riskable: 0.3, rich_greed: 0.7},
+    8: {name: 'Jon Snow 2', predictor: 'detect0.6', behaviours:['depression', 'bet'], riskable: 0.3, rich_greed: 0.7, depression_limit: 20.},
+    10: {name: 'Jon Snow 3', predictor: 'expectation', behaviours:['depression', 'bet'], riskable: 0.3, rich_greed: 0.7, depression_limit: 20.},
+    5: {name: 'Arya', predictor: 'detect0.7', behaviours:['bet'], riskable: 0.3, rich_greed: 0.7},
+    4: {name: 'Ned', predictor: 'detect0.8', behaviours:['bet'], riskable: 0.3, rich_greed: 0.7},
+    3: {name: 'Robb', predictor: 'detect0.9', behaviours:['bet'], riskable: 0.3, rich_greed: 0.7},
+    2: {name: 'Bran', predictor: 'detect1', behaviours:['bet'], riskable: 0.3, rich_greed: 0.7}
 }
 
 // Engine code
@@ -239,8 +239,9 @@ function User(params) {
 
     this.predict = function(x, leaderboard) {
         this.betcount += 1;
+        var pred_res = this.predictor(x);
         for (var i = 0; i < this.behaviours.length; i++) {
-            res = this.behaviours[i](x, leaderboard, this)
+            res = this.behaviours[i](pred_res, leaderboard, this)
             if (res.ok) {
                 this.cs(res.p, x.success, this);
                 return {"sum": res.sum, "p": res.p}
